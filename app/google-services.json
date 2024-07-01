@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "842007897609",
+    "project_id": "final-project-32c4c",
+    "storage_bucket": "final-project-32c4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842007897609:android:45115eb694c078c8237ad8",
+        "android_client_info": {
+          "package_name": "paba.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf_40Xa0ZUFWdNznrXBS6lUp9R-HZhl3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
