@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/itemJudulTodo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:text="Judul"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnEditTodo"
+        app:layout_constraintStart_toEndOf="@+id/itemIsFinished"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/itemIsiTodo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Context item"
+        app:layout_constraintEnd_toEndOf="@+id/itemJudulTodo"
+        app:layout_constraintStart_toStartOf="@+id/itemJudulTodo"
+        app:layout_constraintTop_toBottomOf="@+id/itemJudulTodo" />
+
+    <TextView
+        android:id="@+id/waktuItemTodo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Waktu"
+        app:layout_constraintEnd_toEndOf="@+id/itemIsiTodo"
+        app:layout_constraintStart_toStartOf="@+id/itemIsiTodo"
+        app:layout_constraintTop_toBottomOf="@+id/itemIsiTodo" />
+
+    <Button
+        android:id="@+id/btnEditTodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/itemJudulTodo" />
+
+    <Button
+        android:id="@+id/btnDeleteTodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnEditTodo"
+        app:layout_constraintStart_toStartOf="@+id/btnEditTodo"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditTodo" />
+
+    <CheckBox
+        android:id="@+id/itemIsFinished"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

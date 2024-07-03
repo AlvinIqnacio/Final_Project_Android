@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Add New Note"
+        android:text="Add To Do"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,11 +43,10 @@
         android:gravity="start|top"
         android:hint="Write Here !!!"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddTodo"
+        app:layout_constraintBottom_toTopOf="@+id/etAddDateTodo"
         app:layout_constraintEnd_toEndOf="@+id/etAddJudulTodo"
         app:layout_constraintStart_toStartOf="@+id/etAddJudulTodo"
-        app:layout_constraintTop_toBottomOf="@+id/etAddJudulTodo"
-        app:layout_constraintVertical_bias="0.347" />
+        app:layout_constraintTop_toBottomOf="@+id/etAddJudulTodo" />
 
     <Button
         android:id="@+id/btnAddTodo"
@@ -59,4 +58,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etAddDateTodo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddTodo"
+        app:layout_constraintEnd_toEndOf="@+id/etAddNotesTodo"
+        app:layout_constraintStart_toStartOf="@+id/etAddNotesTodo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

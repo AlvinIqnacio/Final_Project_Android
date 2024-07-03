@@ -1,10 +1,19 @@
 package paba.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +30,10 @@ class List_ToDo : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var adapterTodo : AdapterToDo
+    private var arTodo :MutableList<ToDo> = mutableListOf()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,7 +47,102 @@ class List_ToDo : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list__to_do, container, false)
+        return inflater.inflate(R.layout.fragment_list_to_do, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val _btnAddTodo = view.findViewById<FloatingActionButton>(R.id.btnPageAddToDo)
+
+        _btnAddTodo.setOnClickListener {
+            val mAdd_ToDo = Add_ToDo()
+            val mFragmentManager = parentFragmentManager
+            mFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainerView, mAdd_ToDo, Add_ToDo:: class. java.simpleName)
+                addToBackStack(null)
+                commit()
+            }
+        }
+
+        adapterTodo = AdapterToDo(arTodo)
+        val _rvTodo = view.findViewById<RecyclerView>(R.id.rvListToDo)
+        _rvTodo.layoutManager = LinearLayoutManager(MainActivity())
+        _rvTodo.adapter = adapterTodo
+
+        readData()
+
+        adapterTodo.setOnItemClickCallBack(
+            object : AdapterToDo.OnItemClickCallBack{
+
+                override fun selesaiData(dtTodo: ToDo, listTodo: MutableList<ToDo>, position: Int, check: Boolean) {
+                    CoroutineScope(Dispatchers.IO).async {
+                        val temp = listTodo[position]
+                        temp.checked = check
+                        MainActivity.db.collection("tbToDo")
+                            .document(temp.judul)
+                            .set(temp)
+                            .addOnSuccessListener {
+                                Log.d("Firebase", "Berhasil diUpdate")
+                                readData()
+                            }.addOnFailureListener { e ->
+                                Log.w("Firebase", e.message.toString())
+                            }
+                    }
+                }
+
+                override fun editData(dtTodo: ToDo, listTodo: MutableList<ToDo>, position: Int) {
+                    MainActivity.page = "Add_ToDo"
+                    MainActivity.position = position
+                    MainActivity.judul = dtTodo.judul
+
+                    val mAdd_ToDo = Add_ToDo()
+                    val mFragmentManager = parentFragmentManager
+                    mFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentContainerView, mAdd_ToDo, Add_ToDo:: class. java.simpleName)
+                        addToBackStack(null)
+                        commit()
+                    }
+                }
+
+                override fun deleteData(dtTodo: ToDo, listTodo: MutableList<ToDo>, position: Int) {
+                    CoroutineScope(Dispatchers.IO).async {
+                        val temp = listTodo[position]
+                        MainActivity.db.collection("tbToDo")
+                            .document(temp.judul)
+                            .delete()
+                            .addOnSuccessListener {
+                                Log.d("Firebase", "Berhasil diHapus")
+                                readData()
+                            }.addOnFailureListener { e ->
+                                Log.w("Firebase", e.message.toString())
+                            }
+                    }
+                }
+            }
+        )
+    }
+
+    fun readData(){
+        CoroutineScope(Dispatchers.Main).async {
+            MainActivity.db.collection("tbToDo").get().addOnSuccessListener {
+                    result ->
+                var temp : ArrayList<ToDo> = arrayListOf()
+                for (document in result){
+                    val readData = ToDo(
+                        document.data.get("judul").toString(),
+                        document.data.get("isi").toString(),
+                        document.data.get("waktu").toString(),
+                        document.data.get("checked").toString().toBoolean()
+                    )
+                    temp.add(readData)
+                    Log.d("data ROOM", readData.toString())
+                }
+                adapterTodo.isiData(temp)
+                Log.d("data ROOM", temp.toString())
+            }.addOnFailureListener {
+                Log.d("Firebase", it.message.toString())
+            }
+        }
     }
 
     companion object {

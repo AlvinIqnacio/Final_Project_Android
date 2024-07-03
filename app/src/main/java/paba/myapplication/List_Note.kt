@@ -1,12 +1,12 @@
 package paba.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -31,9 +31,8 @@ class List_Note : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    lateinit var adapterTodolist : AdapterTodo
+    lateinit var adapterNote : AdapterNote
     private var arTodo :MutableList<Note> = mutableListOf()
-    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,17 +64,51 @@ class List_Note : Fragment() {
             }
         }
 
-        adapterTodolist = AdapterTodo(arTodo)
+        adapterNote = AdapterNote(arTodo)
         val _rvTodo = view.findViewById<RecyclerView>(R.id.rvListNote)
         _rvTodo.layoutManager = LinearLayoutManager(MainActivity())
-        _rvTodo.adapter = adapterTodolist
+        _rvTodo.adapter = adapterNote
 
         readData()
+
+        adapterNote.setOnItemClickCallBack(
+            object : AdapterNote.OnItemClickCallBack{
+                override fun editData(dtNote: Note, listTodo:MutableList<Note>, position: Int) {
+                    MainActivity.page = "Add_Note"
+                    MainActivity.position = position
+                    MainActivity.judul = dtNote.judul
+
+                    val mAdd_Note = Add_Note()
+                    val mFragmentManager = parentFragmentManager
+                    mFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentContainerView, mAdd_Note, Add_Note:: class. java.simpleName)
+                        addToBackStack(null)
+                        commit()
+                    }
+
+                }
+
+                override fun deleteData(dtNote: Note, listTodo: MutableList<Note>, position: Int) {
+                    CoroutineScope(Dispatchers.IO).async {
+                        val temp = listTodo[position]
+                        MainActivity.db.collection("tbNote")
+                            .document(temp.judul)
+                            .delete()
+                            .addOnSuccessListener {
+                                Log.d("Firebase", "Berhasil diHapus")
+                                readData()
+                            }.addOnFailureListener { e ->
+                                Log.w("Firebase", e.message.toString())
+                            }
+                    }
+                }
+            }
+        )
     }
 
     fun readData(){
         CoroutineScope(Dispatchers.Main).async {
-            db.collection("tbNote").get().addOnSuccessListener {
+            MainActivity.db.collection("tbNote").get().addOnSuccessListener {
                     result ->
                 var temp : ArrayList<Note> = arrayListOf()
                 for (document in result){
@@ -86,7 +119,7 @@ class List_Note : Fragment() {
                     temp.add(readData)
                     Log.d("data ROOM", readData.toString())
                 }
-                adapterTodolist.isiData(temp)
+                adapterNote.isiData(temp)
                 Log.d("data ROOM", temp.toString())
             }.addOnFailureListener {
                 Log.d("Firebase", it.message.toString())
