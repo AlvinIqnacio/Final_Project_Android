@@ -31,11 +31,12 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/btnPageJadwal"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
-                android:text="Button"
+                android:text="Schedule"
+                android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@+id/btnPageNote"
                 app:layout_constraintEnd_toStartOf="@+id/button9"
                 app:layout_constraintStart_toEndOf="@+id/btnPageToDoList"
@@ -49,7 +50,7 @@
                 android:layout_marginEnd="8dp"
                 android:text="To Do List"
                 app:layout_constraintBottom_toBottomOf="@+id/btnPageNote"
-                app:layout_constraintEnd_toStartOf="@+id/button8"
+                app:layout_constraintEnd_toStartOf="@+id/btnPageJadwal"
                 app:layout_constraintStart_toEndOf="@+id/btnPageNote"
                 app:layout_constraintTop_toTopOf="@+id/btnPageNote" />
 
@@ -74,7 +75,7 @@
                 android:text="Button"
                 app:layout_constraintBottom_toBottomOf="@+id/btnPageNote"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button8"
+                app:layout_constraintStart_toEndOf="@+id/btnPageJadwal"
                 app:layout_constraintTop_toTopOf="@+id/btnPageNote" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

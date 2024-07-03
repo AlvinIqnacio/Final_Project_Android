@@ -53,5 +53,15 @@ class MainActivity : AppCompatActivity() {
                 commit()
             }
         }
+
+        val btnJadwal = findViewById<Button>(R.id.btnPageJadwal)
+        btnJadwal.setOnClickListener {
+            val mJadwal = List_Jadwal()
+            mFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainerView, mJadwal, List_Jadwal::class.java.simpleName)
+                addToBackStack(null)
+                commit()
+            }
+        }
     }
 }
