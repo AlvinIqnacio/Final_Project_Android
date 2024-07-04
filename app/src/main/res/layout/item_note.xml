@@ -38,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="#D0DA02"
         android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/itemContentNote" />
@@ -47,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:backgroundTint="#FF0000"
         android:text="Delete"
         app:layout_constraintEnd_toStartOf="@+id/btnEditNote"
         app:layout_constraintHorizontal_bias="1.0"
