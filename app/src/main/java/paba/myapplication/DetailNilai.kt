@@ -105,7 +105,7 @@ class DetailNilai : Fragment() {
                 addToBackStack(null)
                 commit()
             }
-            tambahData(nama_mk,"Tugas 1", "100")
+//            tambahData(nama_mk,"Tugas 1", "100")
             updateTotalNilai(nama_mk)
         }
     }
@@ -166,7 +166,7 @@ class DetailNilai : Fragment() {
                     var temp : MutableList<Map<String, String>> = ArrayList()
                     result.data?.forEach {
                         val dt: MutableMap<String, String> = HashMap(2)
-                        if (it.key != "nama" && it.key != "totalNilai"){
+                        if (it.key != "nama" && it.key != "totalNilai" && it.key != "semester"){
                             dt["field"] = it.key.toString()
                             dt["nilai"] = it.value.toString()
                             temp.add(dt)

@@ -26,6 +26,7 @@ class Add_Nilai : Fragment() {
     private var param2: String? = null
 
     lateinit var _etAddNamaMKNilai : EditText
+    lateinit var _etAddSemester : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +47,10 @@ class Add_Nilai : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _etAddNamaMKNilai = view.findViewById(R.id.etAddNamaMKNilai)
+        _etAddSemester = view.findViewById(R.id.etAddSemester)
         val _btnAddNilai = view.findViewById<Button>(R.id.btnAddNilai)
         _btnAddNilai.setOnClickListener {
-            tambahData(MainActivity.db,_etAddNamaMKNilai.text.toString(),"0")
+            tambahData(MainActivity.db,_etAddNamaMKNilai.text.toString(),"0",_etAddSemester.text.toString())
             val mList_Nilai = List_Nilai()
             val mFragmentManager = parentFragmentManager
             mFragmentManager.beginTransaction().apply {
@@ -58,8 +60,8 @@ class Add_Nilai : Fragment() {
             }
         }
     }
-    fun tambahData(db: FirebaseFirestore, nama: String, totalNilai : String){
-        val dataBaru = Nilai(nama,totalNilai)
+    fun tambahData(db: FirebaseFirestore, nama: String, totalNilai : String, semester : String){
+        val dataBaru = Nilai(nama,totalNilai,semester)
         var nama_mk = dataBaru.nama
         if (MainActivity.position != -1 && MainActivity.page == "Add_Note"){
             nama_mk = MainActivity.judul

@@ -12,7 +12,6 @@
         android:name="paba.myapplication.List_Note"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,59 +23,80 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/btnPageJadwal"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="8dp"
-                android:text="Schedule"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btnPageNote"
-                app:layout_constraintEnd_toStartOf="@+id/btnPageNilai"
-                app:layout_constraintStart_toEndOf="@+id/btnPageToDoList"
-                app:layout_constraintTop_toTopOf="@+id/btnPageNote" />
-
-            <Button
-                android:id="@+id/btnPageToDoList"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="To Do List"
-                app:layout_constraintBottom_toBottomOf="@+id/btnPageNote"
-                app:layout_constraintEnd_toStartOf="@+id/btnPageJadwal"
-                app:layout_constraintStart_toEndOf="@+id/btnPageNote"
-                app:layout_constraintTop_toTopOf="@+id/btnPageNote" />
+            android:layout_height="match_parent"
+            android:background="#00ADB5"
+            android:backgroundTint="#00ADB5">
 
             <Button
                 android:id="@+id/btnPageNote"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Note"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="#00ADB5"
+                android:backgroundTintMode="add"
+                android:text="Notes"
+                android:textColorLink="#00ADB5"
+                android:textSize="12sp"
+                app:icon="@drawable/baseline_article_24"
+                app:iconGravity="top"
+                app:iconPadding="0dp"
+                app:iconSize="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnPageToDoList"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
+                android:id="@+id/btnPageToDoList"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="#00ADB5"
+                android:text="ToDo"
+                android:textSize="12sp"
+                app:icon="@drawable/baseline_checklist_24"
+                app:iconGravity="top"
+                app:iconPadding="0dp"
+                app:iconSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnPageJadwal"
+                app:layout_constraintStart_toEndOf="@+id/btnPageNote"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnPageJadwal"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="#00ADB5"
+                android:text="Schedule"
+                android:textSize="12sp"
+                app:icon="@drawable/baseline_calendar_today_24"
+                app:iconGravity="top"
+                app:iconPadding="5dp"
+                app:iconSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnPageNilai"
+                app:layout_constraintStart_toEndOf="@+id/btnPageToDoList"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
                 android:id="@+id/btnPageNilai"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="8dp"
-                android:text="Nilai"
-                app:layout_constraintBottom_toBottomOf="@+id/btnPageNote"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="#00ADB5"
+                android:text="Scores"
+                android:textSize="12sp"
+                app:icon="@drawable/baseline_123_24"
+                app:iconGravity="top"
+                app:iconPadding="-10dp"
+                app:iconSize="45dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btnPageJadwal"
-                app:layout_constraintTop_toTopOf="@+id/btnPageNote" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

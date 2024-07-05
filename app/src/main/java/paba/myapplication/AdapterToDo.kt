@@ -1,5 +1,6 @@
 package paba.myapplication
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -51,6 +52,16 @@ class AdapterToDo(private val listTodo : MutableList<ToDo>) :
         holder._waktu.setText(todo.waktu)
 
         holder.checkBox.setChecked(todo.checked)
+
+        if (todo.checked){
+            holder._judul.setTextColor(Color.parseColor("#FFCDCDCD"))
+            holder._isi.setTextColor(Color.parseColor("#FFCDCDCD"))
+            holder._waktu.setTextColor(Color.parseColor("#FFCDCDCD"))
+        } else {
+            holder._judul.setTextColor(Color.parseColor("#00ADB5"))
+            holder._isi.setTextColor(Color.parseColor("#000000"))
+            holder._waktu.setTextColor(Color.parseColor("#000000"))
+        }
 
         holder.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
             onItemClickCallBack.selesaiData(todo, listTodo, position, isChecked)

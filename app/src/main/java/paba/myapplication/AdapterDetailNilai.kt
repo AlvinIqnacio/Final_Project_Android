@@ -1,5 +1,6 @@
 package paba.myapplication
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -59,6 +60,7 @@ class AdapterDetailNilai(private val listNilai : MutableList<Map<String,String>>
             }else{
                 editBool = true
                 holder._btnEdit.setText("Save")
+                holder._btnEdit.setBackgroundColor(Color.parseColor("#4CAF50"))
             }
             holder._nilai.isEnabled = editBool
             notifyDataSetChanged()
