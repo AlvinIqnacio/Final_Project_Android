@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/namaNilaiDetailNilai"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:background="#00ADB5"
+        android:gravity="center_vertical"
+        android:text="nilai"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/itemNilaiDetailNilai"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.307" />
+
+    <Button
+        android:id="@+id/btnDeleteDetailNilai"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEditDetailNilai"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnEditDetailNilai"
+        app:layout_constraintTop_toTopOf="@+id/btnEditDetailNilai" />
+
+    <EditText
+        android:id="@+id/itemNilaiDetailNilai"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/namaNilaiDetailNilai"
+        app:layout_constraintEnd_toStartOf="@+id/btnEditDetailNilai"
+        app:layout_constraintStart_toEndOf="@+id/namaNilaiDetailNilai"
+        app:layout_constraintTop_toTopOf="@+id/namaNilaiDetailNilai" />
+
+    <Button
+        android:id="@+id/btnEditDetailNilai"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="4dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toBottomOf="@+id/itemNilaiDetailNilai"
+        app:layout_constraintEnd_toStartOf="@+id/btnDeleteDetailNilai"
+        app:layout_constraintStart_toEndOf="@+id/itemNilaiDetailNilai"
+        app:layout_constraintTop_toTopOf="@+id/itemNilaiDetailNilai" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

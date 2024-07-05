@@ -3,7 +3,6 @@ package paba.myapplication
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +23,7 @@ class AdapterNilai(private val listNilai : MutableList<Nilai>) :
 
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var _nama = itemView.findViewById<TextView>(R.id.namaNilai)
+        var _nama = itemView.findViewById<TextView>(R.id.namaDetailNilai)
         var _totalNilai = itemView.findViewById<TextView>(R.id.totalNilai)
         var _btnToDetail = itemView.findViewById<ImageButton>(R.id.btnToDetail)
     }
