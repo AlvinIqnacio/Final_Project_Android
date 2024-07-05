@@ -63,5 +63,15 @@ class MainActivity : AppCompatActivity() {
                 commit()
             }
         }
+
+        val btnNilai = findViewById<Button>(R.id.btnPageNilai)
+        btnNilai.setOnClickListener {
+            val mNilai = List_Nilai()
+            mFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainerView, mNilai, List_Nilai::class.java.simpleName)
+                addToBackStack(null)
+                commit()
+            }
+        }
     }
 }

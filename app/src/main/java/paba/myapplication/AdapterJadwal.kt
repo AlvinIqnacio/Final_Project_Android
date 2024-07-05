@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 class AdapterJadwal (private val listJadwal : MutableList<Jadwal>) :
     RecyclerView.Adapter<AdapterJadwal.ListViewHolder>() {
     private lateinit var onItemClickCallBack: OnItemClickCallBack
+    var listHari : MutableList<String> = ArrayList()
 
     interface OnItemClickCallBack {
 //        fun editData(dtTodo: Note, listTodo:MutableList<Note>, position: Int)
@@ -41,18 +42,19 @@ class AdapterJadwal (private val listJadwal : MutableList<Jadwal>) :
     override fun onBindViewHolder(holder: AdapterJadwal.ListViewHolder, position: Int) {
         var jadwal = listJadwal[position]
 
+
         holder._hari.setText(jadwal.hari)
-        if (jadwal.hari == "Senin" || jadwal.hari == "senin"){
+        if (jadwal.hari == "Senin"){
             holder._hari.setBackgroundColor(Color.parseColor("#2196F3"))
-        } else if (jadwal.hari == "Selasa" || jadwal.hari == "selasa"){
+        } else if (jadwal.hari == "Selasa"){
             holder._hari.setBackgroundColor(Color.parseColor("#4CAF50"))
-        } else if (jadwal.hari == "Rabu" || jadwal.hari == "rabu"){
+        } else if (jadwal.hari == "Rabu"){
             holder._hari.setBackgroundColor(Color.parseColor("#F44336"))
-        } else if (jadwal.hari == "Kamis" || jadwal.hari == "kamis"){
+        } else if (jadwal.hari == "Kamis"){
             holder._hari.setBackgroundColor(Color.parseColor("#673AB7"))
-        } else if (jadwal.hari == "Jumat" || jadwal.hari == "jumat"){
+        } else if (jadwal.hari == "Jumat"){
             holder._hari.setBackgroundColor(Color.parseColor("#FF9800"))
-        } else if (jadwal.hari == "Sabtu" || jadwal.hari == "sabtu"){
+        } else if (jadwal.hari == "Sabtu"){
             holder._hari.setBackgroundColor(Color.parseColor("#000000"))
         }
         holder._namaMK.setText(jadwal.nama_mk)
