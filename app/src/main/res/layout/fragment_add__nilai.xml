@@ -32,6 +32,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
+    <EditText
+        android:id="@+id/etAddSemester"
+        android:layout_width="372dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Semester"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/etAddNamaMKNilai"
+        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintStart_toStartOf="@+id/etAddNamaMKNilai"
+        app:layout_constraintTop_toBottomOf="@+id/etAddNamaMKNilai" />
+
     <Button
         android:id="@+id/btnAddNilai"
         android:layout_width="wrap_content"

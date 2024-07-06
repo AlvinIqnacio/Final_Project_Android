@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -124,7 +125,8 @@ class List_ToDo : Fragment() {
 
     fun readData(){
         CoroutineScope(Dispatchers.Main).async {
-            MainActivity.db.collection("tbToDo").get().addOnSuccessListener {
+            MainActivity.db.collection("tbToDo").orderBy("checked", Query.Direction.ASCENDING)
+                .get().addOnSuccessListener {
                     result ->
                 var temp : ArrayList<ToDo> = arrayListOf()
                 for (document in result){

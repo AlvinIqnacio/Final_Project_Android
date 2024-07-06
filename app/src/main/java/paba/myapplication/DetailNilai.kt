@@ -105,6 +105,8 @@ class DetailNilai : Fragment() {
                 addToBackStack(null)
                 commit()
             }
+            tambahData(nama_mk,"Tugas 1", "100")
+            updateTotalNilai(nama_mk)
         }
     }
 

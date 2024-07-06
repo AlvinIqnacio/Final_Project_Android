@@ -83,22 +83,25 @@ class List_Nilai : Fragment() {
                         commit()
                     }
                 }
-                //                override fun seeData(dtNilai: Nilai, listNilai: MutableList<Nilai>, position: Int){
-//                    var dtDocument: MutableMap<String, String> = HashMap()
-//                    CoroutineScope(Dispatchers.Main).async {
-//                        val temp = listNilai[position]
-//                        MainActivity.db.collection("tbNilai")
-//                            .document(temp.nama).get()
-//                            .addOnSuccessListener {
-//                                result ->
-//                                dtDocument = result.data as MutableMap<String, String>
-//                                Log.d("data ROOM", temp.toString())
-//                        }.addOnFailureListener {
-//                            Log.d("Firebase", it.message.toString())
-//                        }
-//                    }
-//
-//                }
+
+                override fun deleteData(
+                    nama_mk: Nilai,
+                    listNilai: MutableList<Nilai>,
+                    position: Int
+                ) {
+                    CoroutineScope(Dispatchers.IO).async {
+                        val temp = listNilai[position]
+                        MainActivity.db.collection("tbNilai")
+                            .document(temp.nama)
+                            .delete()
+                            .addOnSuccessListener {
+                                Log.d("Firebase", "Berhasil diHapus")
+                                readData()
+                            }.addOnFailureListener { e ->
+                                Log.w("Firebase", e.message.toString())
+                            }
+                    }
+                }
             }
         )
     }
@@ -111,7 +114,8 @@ class List_Nilai : Fragment() {
                 for (document in result){
                     val readData = Nilai(
                         document.data.get("nama").toString(),
-                        document.data.get("totalNilai").toString()
+                        document.data.get("totalNilai").toString(),
+                        document.data.get("semester").toString()
                     )
                     temp.add(readData)
                     Log.d("data ROOM", readData.toString())
